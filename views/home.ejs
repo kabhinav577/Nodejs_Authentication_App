@@ -1,0 +1,49 @@
+<style>
+  .logo {
+    font-size: 1.3rem !important;
+    font-family: "Bree Serif", serif;
+  }
+</style>
+
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <a
+        href="/home"
+        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+      >
+        <img
+          width="48"
+          height="48"
+          src="https://img.icons8.com/fluency/48/checked-user-male.png"
+          alt="checked-user-male"
+        />
+      </a>
+
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+      >
+        <li>
+          <a href="/home" class="nav-link logo px-2 text-white"
+            >NodeJS Authentication</a
+          >
+        </li>
+      </ul>
+
+      <div class="text-end">
+        <a class="btn btn-danger me-2" href="/destroy-session" role="button"
+          >Sign Out</a
+        >
+        <a class="btn btn-secondary" href="/reset-password" role="button"
+          >Reset Password</a
+        >
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <h1 class="display-3 text-center mt-5">Hello, <%=user.name%></h1>
+</div>
