@@ -12,6 +12,7 @@ const MongoStore = require("connect-mongo");
 // Passport for Authentication
 const passport = require("passport");
 const localStrategy = require("./config/passport-local-strategy");
+const GoogleStrategy = require("./config/passport-google-strategy");
 const User = require("./models/user");
 
 app.use(express.json());
@@ -30,6 +31,7 @@ app.set("views", "./views");
 //configure the session middleware
 app.use(
   session({
+    name: "Nodejs_Auth",
     secret: process.env.EXPRESS_SESSION_KEY,
     resave: false,
     saveUninitialized: false,
@@ -40,6 +42,7 @@ app.use(
       mongoUrl: process.env.MONGO_URI,
       autoRemove: "native", // remove expired sessions automatically
       ttl: 7 * 24 * 60 * 60, // set session TTL to 7 days
+      stringify: false,
     }),
   })
 );
@@ -49,7 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(localStrategy);
 
-// Serializing the User to decide which key is to be kept in the Cookies
+// Serializing the User to decide whichk key is to be kept in the Cookies
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
