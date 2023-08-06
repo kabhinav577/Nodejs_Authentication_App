@@ -14,6 +14,8 @@ const passport = require("passport");
 const localStrategy = require("./config/passport-local-strategy");
 const GoogleStrategy = require("./config/passport-google-strategy");
 const User = require("./models/user");
+const flash = require("connect-flash");
+const customWare = require("./config/middleware");
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -67,6 +69,9 @@ passport.deserializeUser(async (id, done) => {
     return done(err);
   }
 });
+
+app.use(flash());
+app.use(customWare.setFlash);
 
 // Use Router
 app.use("/", require("./routes"));

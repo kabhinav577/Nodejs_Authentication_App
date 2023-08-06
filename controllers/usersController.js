@@ -41,6 +41,7 @@ module.exports.updatePassword = async function (req, res) {
     );
 
     if (!passwordMatch) {
+      req.flash("error", `Current password is Invalid, try again!`);
       console.log("Current password is Invalid, try again!");
       return res.redirect("back");
     }
@@ -51,6 +52,7 @@ module.exports.updatePassword = async function (req, res) {
     user.password = hash;
     await user.save();
 
+    req.flash("success", "Your Password is Update, login to continue!👍");
     return res.redirect("/destroy-session");
   } catch (err) {
     console.log("Error in Reseting Password", err);
@@ -62,6 +64,7 @@ module.exports.updatePassword = async function (req, res) {
 module.exports.create = async function (req, res) {
   try {
     if (req.body.password != req.body.confirm_password) {
+      req.flash("error", `Passwords doesn't not match😭`);
       return res.redirect("back");
     }
 
@@ -87,9 +90,11 @@ module.exports.create = async function (req, res) {
     await newUser.save();
 
     res.status(200);
+    req.flash("success", "You have signed up, login to continue!👍");
 
     return res.redirect("/");
   } catch (err) {
+    req.flash("error", err);
     console.log("Error in Creating Account", err);
     return res.redirect("back");
   }
@@ -97,14 +102,20 @@ module.exports.create = async function (req, res) {
 
 // Create-Session
 module.exports.createSession = (req, res) => {
+  req.flash("success", "Loggin Successfully!👍");
   return res.redirect("/home");
 };
 
 // Destroy Session
 module.exports.destroySession = (req, res) => {
   req.logout((err) => {
-    if (err) console.log("Error in Logging Out", err);
+    if (err) {
+      req.flash("error", err);
+      console.log("Error in Logging Out", err);
+      return;
+    }
   });
 
+  req.flash("success", "You have logged out!😝");
   return res.redirect("/");
 };
