@@ -27,6 +27,8 @@ passport.use(
             password: crypto.randomBytes(20).toString("hex"),
           });
 
+          await newUser.save();
+
           return done(null, newUser);
         }
       } catch (err) {
