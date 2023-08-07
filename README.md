@@ -1,6 +1,6 @@
 # Nodejs_Authentication_App
 
-Complete authentication app that lets user sign up, sign in, reset password, sign in using social accounts, also maintains log in session upto preset time.
+Complete authentication app that lets user sign up, sign in, reset password, sign in using social accounts, also maintains log in session upto preset time and Forgot password link sending on email and update new Password.
 Hosted on Render app. Click [here](https://nodejs-authentication-ovjt.onrender.com/)
 
 ## Features
@@ -9,6 +9,7 @@ Hosted on Render app. Click [here](https://nodejs-authentication-ovjt.onrender.c
 - Sign In
 - Sign In using social accounts
 - Reset passwords
+- Forgot Password through Email
 
 ## TECH Used:
 
@@ -17,6 +18,7 @@ Hosted on Render app. Click [here](https://nodejs-authentication-ovjt.onrender.c
 - [MongoDB Atlas](https://mongodb.com)
 - [Bootstrap](https://getbootstrap.com)
 - [Passport Js](https://passportjs.org)
+- [Nodemailer](https://nodemailer.com)
 
 ## Screenshots
 

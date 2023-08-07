@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
+const cors = require("cors");
 
 // For creating session
 const session = require("express-session");
@@ -17,6 +18,7 @@ const User = require("./models/user");
 const flash = require("connect-flash");
 const customWare = require("./config/middleware");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static("./assets"));
